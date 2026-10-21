@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# La Libellule
 
-## Getting Started
+Site vitrine statique (Next.js, Tailwind, Framer Motion) pour une activité de photogrammétrie et cartographie par drone.
 
-First, run the development server:
+## Développement
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contenu à remplacer
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Textes, prestations, projets, matériel : `src/lib/content.ts`
+- Nom, e-mail, téléphone : `src/lib/site.ts`
+- Formulaire de contact : variable `NEXT_PUBLIC_CONTACT_FORM_URL` (URL d'embed Typeform, ex. `https://form.typeform.com/to/XXXXXXXX`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Déploiement GitHub Pages
 
-## Learn More
+1. Dans le dépôt GitHub : Settings > Pages > Source : **GitHub Actions**.
+2. Settings > Secrets and variables > Actions > Variables : ajouter `CONTACT_FORM_URL`.
+3. Pousser sur `main` : le workflow `.github/workflows/deploy.yml` lint, build (export statique dans `out/`) et déploie. Le `basePath` est déduit du nom du dépôt.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build statique local avec basePath : `NEXT_PUBLIC_BASE_PATH=/la-libellule npm run build`.
