@@ -19,6 +19,6 @@ npm run dev
 
 1. Dans le dépôt GitHub : Settings > Pages > Source : **GitHub Actions**.
 2. Settings > Secrets and variables > Actions > Variables : ajouter `CONTACT_FORM_URL`.
-3. Pousser sur `main` : le workflow `.github/workflows/deploy.yml` lint, build (export statique dans `out/`) et déploie. Le `basePath` est déduit du nom du dépôt.
+3. Pousser sur `main` : le workflow `.github/workflows/deploy.yml` lint, build (export statique dans `out/`) et déploie. Le site est servi à la racine du domaine personnalisé défini dans `public/CNAME`.
 
-Build statique local avec basePath : `NEXT_PUBLIC_BASE_PATH=/la-libellule npm run build`.
+Sans domaine personnalisé (page de projet `<user>.github.io/<repo>`), définir `NEXT_PUBLIC_BASE_PATH=/<repo>` au build.
