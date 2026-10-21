@@ -4,14 +4,27 @@ import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 const infos = [
-  { icon: Mail, label: "E-mail", value: site.email, href: `mailto:${site.email}` },
-  { icon: Phone, label: "Téléphone", value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+  {
+    icon: Mail,
+    label: "E-mail",
+    value: site.email,
+    href: `mailto:${site.email}`,
+  },
+  {
+    icon: Phone,
+    label: "Téléphone",
+    value: site.phone,
+    href: `tel:${site.phone.replace(/\s/g, "")}`,
+  },
   { icon: MapPin, label: "Zone d'intervention", value: site.zone },
 ];
 
 export function Contact() {
   return (
-    <section id="contact" className="scroll-mt-16 border-t border-line bg-surface/40 py-24 sm:py-32">
+    <section
+      id="contact"
+      className="scroll-mt-16 border-t border-line bg-surface/40 py-24 sm:py-32"
+    >
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           index="04"
@@ -41,11 +54,18 @@ export function Contact() {
                 </>
               );
               return info.href ? (
-                <a key={info.label} href={info.href} className="card flex items-center gap-4 p-4">
+                <a
+                  key={info.label}
+                  href={info.href}
+                  className="card flex items-center gap-4 p-4"
+                >
                   {content}
                 </a>
               ) : (
-                <div key={info.label} className="card flex items-center gap-4 p-4">
+                <div
+                  key={info.label}
+                  className="card flex items-center gap-4 p-4"
+                >
                   {content}
                 </div>
               );
@@ -78,8 +98,12 @@ export function Contact() {
                     Emplacement du formulaire
                   </span>
                   <p className="max-w-sm text-muted">
-                    Définissez <code className="font-mono text-foreground">NEXT_PUBLIC_CONTACT_FORM_URL</code>{" "}
-                    avec l&apos;URL d&apos;embed de votre formulaire (Typeform, Tally…) pour l&apos;afficher ici.
+                    Définissez{" "}
+                    <code className="font-mono text-foreground">
+                      NEXT_PUBLIC_CONTACT_FORM_URL
+                    </code>{" "}
+                    avec l&apos;URL d&apos;embed de votre formulaire (Typeform,
+                    Tally…) pour l&apos;afficher ici.
                   </p>
                 </div>
               )}

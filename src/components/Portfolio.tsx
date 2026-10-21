@@ -4,16 +4,24 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { useState } from "react";
 import { projectCategories, projects } from "@/lib/content";
+import { Photo, TechOverlay } from "./Photo";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { TopoVisual } from "./TopoVisual";
 
 export function Portfolio() {
-  const [category, setCategory] = useState<(typeof projectCategories)[number]>("Tous");
-  const visible = category === "Tous" ? projects : projects.filter((p) => p.category === category);
+  const [category, setCategory] =
+    useState<(typeof projectCategories)[number]>("Tous");
+  const visible =
+    category === "Tous"
+      ? projects
+      : projects.filter((p) => p.category === category);
 
   return (
-    <section id="projets" className="scroll-mt-16 border-y border-line bg-surface/40 py-24 sm:py-32">
+    <section
+      id="projets"
+      className="scroll-mt-16 border-y border-line bg-surface/40 py-24 sm:py-32"
+    >
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           index="02"
@@ -23,7 +31,7 @@ export function Portfolio() {
               Quelques <span className="text-gradient">réalisations</span>
             </>
           }
-          description="Un aperçu de missions menées pour des industriels, des collectivités et des exploitants."
+          description="Un aperçu de missions menées pour des domaines viticoles, des collectivités et des gestionnaires de patrimoine."
         />
 
         <Reveal className="mb-10 flex flex-wrap gap-2" delay={0.1}>
@@ -35,8 +43,8 @@ export function Portfolio() {
               aria-pressed={category === item}
               className={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
                 category === item
-                  ? "border-accent bg-accent/15 text-accent"
-                  : "border-line text-muted hover:border-accent/40 hover:text-foreground"
+                  ? "border-sand bg-sand/15 text-sand"
+                  : "border-line text-muted hover:border-sand/40 hover:text-foreground"
               }`}
             >
               {item}
@@ -57,13 +65,21 @@ export function Portfolio() {
                 className="card group overflow-hidden"
               >
                 <div className="relative aspect-[3/2] overflow-hidden">
+                  <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
+                    <Photo
+                      id={project.image}
+                      sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                      className="brightness-90 saturate-[.9]"
+                    />
+                  </div>
                   <TopoVisual
                     seed={project.seed}
                     hue={project.hue}
-                    className="h-full w-full transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 h-full w-full opacity-0 mix-blend-screen transition-opacity duration-500 group-hover:opacity-80"
                   />
+                  <TechOverlay />
                   <div className="animate-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-accent shadow-[0_0_16px_2px] shadow-accent/70" />
-                  <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-background/70 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-accent backdrop-blur">
+                  <span className="absolute left-8 top-4 rounded-full border border-white/10 bg-background/70 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-sand backdrop-blur">
                     {project.category}
                   </span>
                 </div>
@@ -72,15 +88,21 @@ export function Portfolio() {
                     <MapPin className="h-3.5 w-3.5" />
                     {project.location} · {project.year}
                   </div>
-                  <h3 className="text-lg font-semibold">{project.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{project.description}</p>
+                  <h3 className="font-serif text-xl font-medium">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {project.description}
+                  </p>
                   <dl className="mt-5 grid grid-cols-3 gap-2 border-t border-line pt-4">
                     {project.stats.map((stat) => (
                       <div key={stat.label}>
                         <dt className="font-mono text-[10px] uppercase tracking-wider text-muted">
                           {stat.label}
                         </dt>
-                        <dd className="mt-0.5 text-sm font-medium">{stat.value}</dd>
+                        <dd className="mt-0.5 text-sm font-medium">
+                          {stat.value}
+                        </dd>
                       </div>
                     ))}
                   </dl>

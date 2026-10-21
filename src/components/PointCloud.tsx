@@ -21,13 +21,19 @@ function buildPoints(): Point[] {
       const z = (j / (GRID - 1)) * 2 - 1;
       const h = terrain(x, z);
       const hn = Math.min(Math.max((h + 0.6) / 1.8, 0), 1);
-      points.push({ x, y: h * 0.4, z, hue: 195 + hn * 80 });
+      // Du vert (bas) au sable (sommets), comme une carte hypsométrique.
+      points.push({ x, y: h * 0.4, z, hue: 165 - hn * 120 });
     }
   }
   return points;
 }
 
-export function PointCloud({ className }: { className?: string }) {
+type PointCloudProps = {
+  className?: string;
+  zoom?: number;
+};
+
+export function PointCloud({ className, zoom = 1 }: PointCloudProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -36,7 +42,9 @@ export function PointCloud({ className }: { className?: string }) {
     if (!canvas || !ctx) return;
 
     const points = buildPoints();
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     let width = 0;
     let height = 0;
     let frame = 0;
@@ -61,8 +69,8 @@ export function PointCloud({ className }: { className?: string }) {
       const sinT = Math.sin(tilt);
       const scanZ = Math.sin(time * 0.0009);
       const size = Math.min(width, height * 1.5);
-      const focal = size * 1.35;
-      const cx = width > 900 ? width * 0.68 : width * 0.5;
+      const focal = size * 1.35 * zoom;
+      const cx = width * 0.5;
       const cy = height * 0.5;
 
       for (const p of points) {
@@ -77,7 +85,7 @@ export function PointCloud({ className }: { className?: string }) {
         const depth = Math.min(Math.max(0.55 - rd * 0.25, 0.15), 0.9);
         const r = (1.1 + glow * 1.8) * (scale / (focal / 3.2));
         ctx.globalAlpha = Math.min(depth + glow, 1);
-        ctx.fillStyle = `hsl(${p.hue} 90% ${58 + glow * 25}%)`;
+        ctx.fillStyle = `hsl(${p.hue} 80% ${58 + glow * 25}%)`;
         ctx.fillRect(sx - r / 2, sy - r / 2, r + 0.6, r + 0.6);
       }
       ctx.globalAlpha = 1;
@@ -111,7 +119,7 @@ export function PointCloud({ className }: { className?: string }) {
       observer.disconnect();
       io.disconnect();
     };
-  }, []);
+  }, [zoom]);
 
   return <canvas ref={canvasRef} className={className} aria-hidden="true" />;
 }

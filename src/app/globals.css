@@ -1,21 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --background: #05080f;
-  --foreground: #e6edf6;
+  --background: #080d0b;
+  --foreground: #e9efe9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-surface: #0b111c;
-  --color-surface-2: #101826;
-  --color-line: rgb(148 163 184 / 0.14);
-  --color-muted: #8b9bb4;
-  --color-accent: #22d3ee;
-  --color-accent-2: #818cf8;
+  --color-surface: #0e1512;
+  --color-surface-2: #141d19;
+  --color-line: rgb(190 215 200 / 0.15);
+  --color-muted: #94a69c;
+  --color-accent: #2dd4bf;
+  --color-sand: #e8c98f;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-fraunces);
 }
 
 html {
@@ -30,7 +31,7 @@ body {
 }
 
 ::selection {
-  background: rgb(34 211 238 / 0.3);
+  background: rgb(45 212 191 / 0.3);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -41,13 +42,21 @@ body {
 
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgb(148 163 184 / 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(148 163 184 / 0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(to right, rgb(190 215 200 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(190 215 200 / 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgb(0 0 0 / 0.28) 3px 4px
+  );
 }
 
 .text-gradient {
-  background: linear-gradient(100deg, #67e8f9 0%, #22d3ee 35%, #818cf8 100%);
+  background: linear-gradient(100deg, #f4dba6 0%, #e8c98f 40%, #5eead4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -56,8 +65,12 @@ body {
 .card {
   position: relative;
   border: 1px solid var(--color-line);
-  border-radius: 1rem;
-  background: linear-gradient(160deg, var(--color-surface-2), var(--color-surface));
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    160deg,
+    var(--color-surface-2),
+    var(--color-surface)
+  );
   transition:
     border-color 0.3s,
     transform 0.3s,
@@ -65,8 +78,8 @@ body {
 }
 
 .card:hover {
-  border-color: rgb(34 211 238 / 0.45);
-  box-shadow: 0 0 40px -12px rgb(34 211 238 / 0.35);
+  border-color: rgb(45 212 191 / 0.45);
+  box-shadow: 0 0 40px -12px rgb(45 212 191 / 0.35);
 }
 
 @keyframes scan {
@@ -84,12 +97,32 @@ body {
   }
 }
 
+@keyframes sweep {
+  0% {
+    transform: translateX(-5vw);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(105vw);
+    opacity: 0;
+  }
+}
+
 .animate-scan {
   animation: scan 4s ease-in-out infinite;
 }
 
+.animate-sweep {
+  animation: sweep 10s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-scan {
+  .animate-scan,
+  .animate-sweep {
     animation: none;
     opacity: 0;
   }

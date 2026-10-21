@@ -25,12 +25,18 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#top" className="flex items-center gap-2.5 font-semibold tracking-tight">
+        <a
+          href="#top"
+          className="flex items-center gap-2.5 font-semibold tracking-tight"
+        >
           <Logo />
           {site.name}
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Navigation principale">
+        <nav
+          className="hidden items-center gap-6 md:flex"
+          aria-label="Navigation principale"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -42,7 +48,7 @@ export function Header() {
           ))}
           <a
             href="#contact"
-            className="rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent transition-colors hover:bg-accent/20"
+            className="rounded-full border border-sand/50 bg-sand/10 px-4 py-1.5 text-sm font-medium text-sand transition-colors hover:bg-sand/20"
           >
             Demander un devis
           </a>
@@ -60,7 +66,10 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 px-6 pb-6 md:hidden" aria-label="Navigation mobile">
+        <nav
+          className="flex flex-col gap-1 px-6 pb-6 md:hidden"
+          aria-label="Navigation mobile"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}

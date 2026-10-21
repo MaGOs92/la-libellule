@@ -17,7 +17,7 @@ function mulberry32(seed: number) {
 const W = 400;
 const H = 260;
 
-// Placeholder de vignette : courbes de niveau générées de façon déterministe.
+// Courbes de niveau et points de contrôle générés de façon déterministe, à superposer à une photo.
 export function TopoVisual({ seed, hue, className }: TopoVisualProps) {
   const rand = mulberry32(seed);
   const f1 = 0.008 + rand() * 0.01;
@@ -40,14 +40,13 @@ export function TopoVisual({ seed, hue, className }: TopoVisualProps) {
     return `M${pts.join(" L")}`;
   });
 
-  const dots = Array.from({ length: 28 }, () => ({
+  const dots = Array.from({ length: 22 }, () => ({
     x: Math.round(rand() * W),
     y: Math.round(rand() * H),
     r: (0.8 + rand() * 1.4).toFixed(1),
   }));
 
-  const stroke = `hsl(${hue} 85% 60%)`;
-  const id = `topo-${seed}`;
+  const stroke = `hsl(${hue} 85% 65%)`;
 
   return (
     <svg
@@ -56,13 +55,6 @@ export function TopoVisual({ seed, hue, className }: TopoVisualProps) {
       className={className}
       aria-hidden="true"
     >
-      <defs>
-        <linearGradient id={id} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor={`hsl(${hue} 70% 14%)`} />
-          <stop offset="1" stopColor={`hsl(${hue + 50} 60% 8%)`} />
-        </linearGradient>
-      </defs>
-      <rect width={W} height={H} fill={`url(#${id})`} />
       {paths.map((d, i) => (
         <path
           key={i}
@@ -70,11 +62,18 @@ export function TopoVisual({ seed, hue, className }: TopoVisualProps) {
           fill="none"
           stroke={stroke}
           strokeWidth={i % 4 === 0 ? 1.4 : 0.7}
-          strokeOpacity={i % 4 === 0 ? 0.75 : 0.35}
+          strokeOpacity={i % 4 === 0 ? 0.8 : 0.4}
         />
       ))}
       {dots.map((dot, i) => (
-        <circle key={i} cx={dot.x} cy={dot.y} r={dot.r} fill={stroke} fillOpacity={0.6} />
+        <circle
+          key={i}
+          cx={dot.x}
+          cy={dot.y}
+          r={dot.r}
+          fill={stroke}
+          fillOpacity={0.7}
+        />
       ))}
     </svg>
   );

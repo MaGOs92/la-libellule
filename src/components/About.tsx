@@ -19,7 +19,8 @@ export function About() {
           eyebrow="À propos"
           title={
             <>
-              Un pilote, une <span className="text-gradient">méthode</span>, du matériel de pointe
+              Un pilote, une <span className="text-gradient">méthode</span>, du
+              matériel de pointe
             </>
           }
         />
@@ -33,7 +34,7 @@ export function About() {
                   Photo
                 </span>
               </div>
-              <h3 className="text-xl font-semibold">{about.name}</h3>
+              <h3 className="font-serif text-2xl font-medium">{about.name}</h3>
               <p className="mt-1 text-accent">{about.role}</p>
               {about.bio.map((paragraph) => (
                 <p key={paragraph} className="mt-4 leading-relaxed text-muted">
@@ -54,9 +55,16 @@ export function About() {
           <div className="lg:col-span-3">
             <Reveal className="grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line bg-line">
               {about.stats.map((stat) => (
-                <div key={stat.label} className="bg-surface p-5 text-center sm:p-6">
-                  <div className="text-gradient text-3xl font-semibold sm:text-4xl">{stat.value}</div>
-                  <div className="mt-1 text-xs text-muted sm:text-sm">{stat.label}</div>
+                <div
+                  key={stat.label}
+                  className="bg-surface p-5 text-center sm:p-6"
+                >
+                  <div className="text-gradient font-serif text-3xl font-medium sm:text-4xl">
+                    {stat.value}
+                  </div>
+                  <div className="mt-1 text-xs text-muted sm:text-sm">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </Reveal>
@@ -79,7 +87,9 @@ export function About() {
                           {item.kind}
                         </div>
                         <div className="font-medium">{item.name}</div>
-                        <p className="mt-0.5 text-sm leading-snug text-muted">{item.detail}</p>
+                        <p className="mt-0.5 text-sm leading-snug text-muted">
+                          {item.detail}
+                        </p>
                       </div>
                     </li>
                   );
