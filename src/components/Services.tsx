@@ -33,8 +33,14 @@ export function Services() {
                 <h3 className="font-serif text-xl font-medium">
                   {service.title}
                 </h3>
-                <p className="mt-2 flex-1 leading-relaxed text-muted">
+                <p className="mt-2 leading-relaxed text-muted">
                   {service.description}
+                </p>
+                <p className="mt-3 flex-1 text-sm text-foreground/60">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-sand">
+                    Pour{" "}
+                  </span>
+                  {service.audience}
                 </p>
                 <ul className="mt-5 space-y-1.5 border-t border-line pt-4 text-sm">
                   {service.deliverables.map((item) => (

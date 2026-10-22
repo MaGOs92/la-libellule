@@ -6,15 +6,18 @@ type PhotoProps = {
   id: PhotoId;
   sizes: string;
   priority?: boolean;
+  // Variante 1920 px, disponible uniquement pour les photos du hero.
+  full?: boolean;
   className?: string;
 };
 
 // À placer dans un parent `relative` : l'image remplit son conteneur.
-export function Photo({ id, sizes, priority, className = "" }: PhotoProps) {
+export function Photo({ id, sizes, priority, full, className = "" }: PhotoProps) {
   const photo = photos[id];
+  const src = full ? photo.src.replace("-sm.webp", ".webp") : photo.src;
   return (
     <Image
-      src={asset(photo.src)}
+      src={asset(src)}
       alt={photo.alt}
       fill
       sizes={sizes}

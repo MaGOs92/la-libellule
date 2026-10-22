@@ -6,6 +6,7 @@ import { legal, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: `Mentions légales — ${site.name}`,
   description: `Mentions légales du site ${site.name}.`,
+  alternates: { canonical: "/mentions-legales" },
 };
 
 const sections: { title: string; body: React.ReactNode }[] = [

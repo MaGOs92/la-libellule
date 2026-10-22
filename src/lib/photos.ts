@@ -29,7 +29,7 @@ const photo = (
   file: string,
 ): [PhotoId, PhotoInfo] => [
   id,
-  { src: `/images/touraine/${id}.jpg`, alt, author, license, file },
+  { src: `/images/touraine/${id}-sm.webp`, alt, author, license, file },
 ];
 
 export const photos = Object.fromEntries([

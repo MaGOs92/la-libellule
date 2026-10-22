@@ -31,16 +31,19 @@ export function Hero() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <h1 className="font-serif text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
-              Le Val de Loire vu du ciel,{" "}
-              <span className="text-gradient">mesuré au centimètre.</span>
+            <h1 className="font-serif text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl lg:text-[3.75rem]">
+              Photogrammétrie et cartographie par drone{" "}
+              <span className="text-gradient">
+                en Touraine, au centimètre près.
+              </span>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/75">
-              Photogrammétrie et cartographie par drone autour de Tours :
-              vignobles, berges de Loire, patrimoine et chantiers. Des données
-              précises, directement exploitables par vos équipes.
+              Le Val de Loire vu du ciel : télépilote professionnel basé près de
+              Tours, j&apos;interviens sur les vignobles, les berges de Loire, le
+              patrimoine et les chantiers. Des données précises, directement
+              exploitables par vos équipes.
             </p>
           </Reveal>
           <Reveal delay={0.3} className="mt-10 flex flex-wrap gap-4">

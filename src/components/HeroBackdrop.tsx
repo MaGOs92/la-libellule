@@ -25,13 +25,15 @@ const slides: { id: PhotoId; place: string; coords: string }[] = [
 
 export function HeroBackdrop() {
   const [index, setIndex] = useState(0);
+  // Seules la diapositive courante et la suivante sont chargées au départ.
+  const [loaded, setLoaded] = useState(2);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = setInterval(
-      () => setIndex((i) => (i + 1) % slides.length),
-      7000,
-    );
+    const timer = setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length);
+      setLoaded((n) => Math.min(n + 1, slides.length));
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
@@ -40,7 +42,7 @@ export function HeroBackdrop() {
   return (
     <>
       <div className="absolute inset-0 -z-30">
-        {slides.map((slide, i) => (
+        {slides.slice(0, loaded).map((slide, i) => (
           <div
             key={slide.id}
             className={`absolute inset-0 transition-[opacity,transform] duration-[1800ms] ease-out ${
@@ -50,6 +52,7 @@ export function HeroBackdrop() {
             <Photo
               id={slide.id}
               priority={i === 0}
+              full
               sizes="100vw"
               className="brightness-[.95] saturate-[.95]"
             />

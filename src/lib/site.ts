@@ -1,8 +1,9 @@
 export const site = {
   name: "La Libellule",
+  url: "https://la-libellule.tech",
   baseline: "Photogrammétrie & cartographie par drone",
   description:
-    "Photogrammétrie et cartographie par drone en Touraine : orthophotos, modèles 3D, MNT et suivi de chantier haute précision autour de Tours et du Val de Loire.",
+    "Télépilote professionnel à Tours et en Touraine : orthophotos, modèles 3D, MNT, volumétrie et suivi de chantier par drone, avec une précision centimétrique.",
   email: "contact@la-libellule.tech",
   phone: "+33 6 51 64 75 49",
   zone: "Touraine (37) et départements limitrophes",

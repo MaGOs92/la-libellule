@@ -5,6 +5,7 @@ import { legal, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: `Politique de confidentialité — ${site.name}`,
   description: `Comment ${site.name} collecte et utilise les données transmises via le formulaire de contact.`,
+  alternates: { canonical: "/confidentialite" },
 };
 
 const sections: { title: string; body: React.ReactNode }[] = [

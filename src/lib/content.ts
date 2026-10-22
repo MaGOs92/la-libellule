@@ -48,6 +48,7 @@ export const places: Place[] = [
 export type Service = {
   title: string;
   description: string;
+  audience: string;
   deliverables: string[];
   icon: LucideIcon;
 };
@@ -56,7 +57,8 @@ export const services: Service[] = [
   {
     title: "Cartographie & orthophotos",
     description:
-      "Plans géoréférencés haute résolution pour vos études, dossiers réglementaires ou suivis d'évolution.",
+      "Orthophotos et plans géoréférencés haute résolution réalisés par drone en Touraine, pour vos études, dossiers réglementaires ou suivis d'évolution.",
+    audience: "Collectivités, bureaux d'études, géomètres, domaines viticoles",
     deliverables: [
       "Orthophoto GeoTIFF",
       "Export QGIS / SIG",
@@ -67,7 +69,8 @@ export const services: Service[] = [
   {
     title: "Modèles 3D & photogrammétrie",
     description:
-      "Reconstruction fidèle de bâtiments, ouvrages et sites complexes en maillage texturé ou nuage de points.",
+      "Modélisation 3D par photogrammétrie de bâtiments, ouvrages d'art et sites complexes, en maillage texturé ou nuage de points, à Tours et dans toute l'Indre-et-Loire.",
+    audience: "Architectes, gestionnaires d'ouvrages, promoteurs, assureurs",
     deliverables: [
       "Maillage texturé",
       "Nuage de points LAS/E57",
@@ -78,14 +81,16 @@ export const services: Service[] = [
   {
     title: "MNT, MNS & courbes de niveau",
     description:
-      "Modèles numériques de terrain précis, profils en long et en travers, courbes de niveau exploitables en CAO.",
+      "Modèles numériques de terrain précis, profils en long et en travers et courbes de niveau exploitables en CAO, pour l'aménagement, l'hydraulique et la voirie.",
+    audience: "Géomètres, bureaux d'études VRD, études hydrauliques",
     deliverables: ["MNT / MNS", "Courbes de niveau DXF", "Profils & coupes"],
     icon: Mountain,
   },
   {
     title: "Volumétrie",
     description:
-      "Calcul de volumes de stocks, carrières, remblais et déblais, avec comparaison entre deux dates.",
+      "Calcul de volumes de stocks, carrières, remblais et déblais par drone, avec comparaison entre deux dates et rapport chiffré.",
+    audience: "Carrières, négoces de matériaux, entreprises de TP",
     deliverables: [
       "Rapport de volumes",
       "Cartes de différence",
@@ -96,7 +101,8 @@ export const services: Service[] = [
   {
     title: "Suivi de chantier & inspection",
     description:
-      "Avancement, contrôle de conformité et inspection d'ouvrages ou de toitures sans échafaudage.",
+      "Suivi d'avancement, contrôle de conformité et inspection de toitures ou d'ouvrages par drone, sans échafaudage et en toute sécurité.",
+    audience: "Maîtres d'ouvrage, conducteurs de travaux, syndics, assureurs",
     deliverables: [
       "Reporting daté",
       "Comparaison as-built",
@@ -107,7 +113,8 @@ export const services: Service[] = [
   {
     title: "Patrimoine & jumeaux numériques",
     description:
-      "Documentation 3D du patrimoine bâti et création de jumeaux numériques pour l'archivage et la valorisation.",
+      "Documentation 3D des châteaux, églises et bâti ancien de Touraine, et création de jumeaux numériques pour l'archivage, la restauration et la valorisation.",
+    audience: "Monuments historiques, communes, propriétaires de domaines",
     deliverables: [
       "Relevé 3D complet",
       "Fichiers BIM-ready",
@@ -188,7 +195,7 @@ export const projects: Project[] = [
     ],
     model: {
       src: "/portfolio/3d-models/poce-sur-cisse.glb",
-      poster: "/portfolio/3d-models/poce-sur-cisse.jpg",
+      poster: "/portfolio/3d-models/poce-sur-cisse.webp",
     },
     seed: 7,
     hue: 170,

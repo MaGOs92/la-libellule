@@ -19,9 +19,22 @@ const fraunces = Fraunces({
   subsets: ["latin"],
 });
 
+const title = `Photogrammétrie et cartographie par drone en Touraine — ${site.name}`;
+
 export const metadata: Metadata = {
-  title: `${site.name} — ${site.baseline} en Touraine`,
+  metadataBase: new URL(site.url),
+  title,
   description: site.description,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: site.name,
+    title,
+    description: site.description,
+    url: "/",
+  },
+  twitter: { card: "summary_large_image", title, description: site.description },
 };
 
 export const viewport: Viewport = {
