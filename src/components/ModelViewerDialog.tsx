@@ -12,7 +12,12 @@ type ModelViewerDialogProps = {
 };
 
 // Monté uniquement à l'ouverture : le GLB et model-viewer ne sont chargés qu'à la demande.
-export function ModelViewerDialog({ title, src, stats, onClose }: ModelViewerDialogProps) {
+export function ModelViewerDialog({
+  title,
+  src,
+  stats,
+  onClose,
+}: ModelViewerDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -65,11 +70,14 @@ export function ModelViewerDialog({ title, src, stats, onClose }: ModelViewerDia
           <div className="flex flex-wrap gap-x-8 gap-y-1">
             {stats.map((stat) => (
               <span key={stat.label}>
-                {stat.label} <span className="text-foreground">{stat.value}</span>
+                {stat.label}{" "}
+                <span className="text-foreground">{stat.value}</span>
               </span>
             ))}
           </div>
-          <span className="hidden sm:inline">Glisser pour tourner · molette pour zoomer</span>
+          <span className="hidden sm:inline">
+            Glisser pour tourner · molette pour zoomer
+          </span>
         </div>
       </div>
     </dialog>

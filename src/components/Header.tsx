@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navLinks, site } from "@/lib/site";
 import { Logo } from "./Logo";
@@ -25,33 +26,33 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a
-          href="#top"
+        <Link
+          href="/#top"
           className="flex items-center gap-2.5 font-semibold tracking-tight"
         >
           <Logo />
           {site.name}
-        </a>
+        </Link>
 
         <nav
           className="hidden items-center gap-6 md:flex"
           aria-label="Navigation principale"
         >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm text-muted transition-colors hover:text-foreground"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="rounded-full border border-sand/50 bg-sand/10 px-4 py-1.5 text-sm font-medium text-sand transition-colors hover:bg-sand/20"
           >
             Demander un devis
-          </a>
+          </Link>
         </nav>
 
         <button
@@ -71,14 +72,14 @@ export function Header() {
           aria-label="Navigation mobile"
         >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
               className="rounded-lg px-3 py-3 text-lg text-foreground hover:bg-white/5"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       )}

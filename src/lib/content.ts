@@ -298,7 +298,7 @@ export const projects: Project[] = [
 ];
 
 export const about = {
-  name: "Prénom Nom",
+  name: "Guillaume Fay",
   role: "Télépilote professionnel & photogrammètre",
   bio: [
     "Installé en Touraine, j'ai fondé La Libellule pour mettre la photogrammétrie par drone au service des professionnels du territoire : géomètres, bureaux d'études, collectivités, viticulteurs, exploitants et gestionnaires de patrimoine.",

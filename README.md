@@ -13,12 +13,11 @@ npm run dev
 
 - Textes, prestations, projets, matériel : `src/lib/content.ts`
 - Nom, e-mail, téléphone : `src/lib/site.ts`
-- Formulaire de contact : variable `NEXT_PUBLIC_CONTACT_FORM_URL` (URL d'embed Typeform, ex. `https://form.typeform.com/to/XXXXXXXX`)
+- Formulaire de contact (Tally) : `contactFormUrl` et `contactFormShareUrl` dans `src/lib/site.ts`
 
 ## Déploiement GitHub Pages
 
 1. Dans le dépôt GitHub : Settings > Pages > Source : **GitHub Actions**.
-2. Settings > Secrets and variables > Actions > Variables : ajouter `CONTACT_FORM_URL`.
-3. Pousser sur `main` : le workflow `.github/workflows/deploy.yml` lint, build (export statique dans `out/`) et déploie. Le site est servi à la racine du domaine personnalisé défini dans `public/CNAME`.
+2. Pousser sur `main` : le workflow `.github/workflows/deploy.yml` lint, build (export statique dans `out/`) et déploie. Le site est servi à la racine du domaine personnalisé défini dans `public/CNAME`.
 
 Sans domaine personnalisé (page de projet `<user>.github.io/<repo>`), définir `NEXT_PUBLIC_BASE_PATH=/<repo>` au build.

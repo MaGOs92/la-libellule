@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { navLinks, site } from "@/lib/site";
 import { commonsUrl, photos } from "@/lib/photos";
 import { Logo } from "./Logo";
@@ -18,14 +19,26 @@ export function Footer() {
             aria-label="Pied de page"
           >
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 className="transition-colors hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
+            <Link
+              href="/confidentialite"
+              className="transition-colors hover:text-foreground"
+            >
+              Confidentialité
+            </Link>
+            <Link
+              href="/mentions-legales"
+              className="transition-colors hover:text-foreground"
+            >
+              Mentions légales
+            </Link>
           </nav>
         </div>
 

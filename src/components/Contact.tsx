@@ -74,39 +74,21 @@ export function Contact() {
 
           <Reveal delay={0.1} className="lg:col-span-3">
             <div className="card overflow-hidden">
-              {site.contactFormUrl ? (
-                <>
-                  <iframe
-                    src={site.contactFormUrl}
-                    title="Formulaire de contact"
-                    loading="lazy"
-                    className="block h-[560px] w-full border-0 bg-surface-2"
-                  />
-                  <a
-                    href={site.contactFormUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 border-t border-line py-3 text-sm text-muted transition-colors hover:text-accent"
-                  >
-                    Ouvrir le formulaire dans un nouvel onglet
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                </>
-              ) : (
-                <div className="bg-grid flex h-[560px] flex-col items-center justify-center gap-3 p-8 text-center">
-                  <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                    Emplacement du formulaire
-                  </span>
-                  <p className="max-w-sm text-muted">
-                    Définissez{" "}
-                    <code className="font-mono text-foreground">
-                      NEXT_PUBLIC_CONTACT_FORM_URL
-                    </code>{" "}
-                    avec l&apos;URL d&apos;embed de votre formulaire (Typeform,
-                    Tally…) pour l&apos;afficher ici.
-                  </p>
-                </div>
-              )}
+              <iframe
+                src={site.contactFormUrl}
+                title="Formulaire de contact"
+                loading="lazy"
+                className="block h-[640px] w-full border-0 bg-surface-2"
+              />
+              <a
+                href={site.contactFormShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 border-t border-line py-3 text-sm text-muted transition-colors hover:text-accent"
+              >
+                Ouvrir le formulaire dans un nouvel onglet
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
             </div>
           </Reveal>
         </div>
