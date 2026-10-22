@@ -1,17 +1,23 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { MapPin } from "lucide-react";
+import { Box, MapPin } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
-import { projectCategories, projects } from "@/lib/content";
+import { projectCategories, projects, type Project } from "@/lib/content";
+import { asset } from "@/lib/site";
+import { ModelViewerDialog } from "./ModelViewerDialog";
 import { Photo, TechOverlay } from "./Photo";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { TopoVisual } from "./TopoVisual";
 
+const coverSizes = "(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw";
+
 export function Portfolio() {
   const [category, setCategory] =
     useState<(typeof projectCategories)[number]>("Tous");
+  const [openProject, setOpenProject] = useState<Project | null>(null);
   const visible =
     category === "Tous"
       ? projects
@@ -66,11 +72,23 @@ export function Portfolio() {
               >
                 <div className="relative aspect-[3/2] overflow-hidden">
                   <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-110">
-                    <Photo
-                      id={project.image}
-                      sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                      className="brightness-90 saturate-[.9]"
-                    />
+                    {project.model ? (
+                      <Image
+                        src={asset(project.model.poster)}
+                        alt={`Aperçu du modèle 3D : ${project.title}`}
+                        fill
+                        sizes={coverSizes}
+                        className="object-cover brightness-90"
+                      />
+                    ) : (
+                      project.image && (
+                        <Photo
+                          id={project.image}
+                          sizes={coverSizes}
+                          className="brightness-90 saturate-[.9]"
+                        />
+                      )
+                    )}
                   </div>
                   <TopoVisual
                     seed={project.seed}
@@ -82,6 +100,16 @@ export function Portfolio() {
                   <span className="absolute left-8 top-4 rounded-full border border-white/10 bg-background/70 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-sand backdrop-blur">
                     {project.category}
                   </span>
+                  {project.model && (
+                    <button
+                      type="button"
+                      onClick={() => setOpenProject(project)}
+                      className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-sand px-4 py-2 text-sm font-medium text-background shadow-lg transition hover:brightness-110"
+                    >
+                      <Box className="h-4 w-4" />
+                      Explorer en 3D
+                    </button>
+                  )}
                 </div>
                 <div className="p-5">
                   <div className="mb-2 flex items-center gap-1.5 text-xs text-muted">
@@ -112,6 +140,15 @@ export function Portfolio() {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {openProject?.model && (
+        <ModelViewerDialog
+          title={openProject.title}
+          src={openProject.model.src}
+          stats={openProject.stats}
+          onClose={() => setOpenProject(null)}
+        />
+      )}
     </section>
   );
 }

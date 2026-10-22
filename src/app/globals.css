@@ -127,3 +127,7 @@ body {
     opacity: 0;
   }
 }
+
+body:has(dialog[open]) {
+  overflow: hidden;
+}

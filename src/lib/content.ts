@@ -153,6 +153,11 @@ export type ProjectCategory = Exclude<
   "Tous"
 >;
 
+export type ProjectModel = {
+  src: string;
+  poster: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -161,12 +166,33 @@ export type Project = {
   year: string;
   description: string;
   stats: { label: string; value: string }[];
-  image: PhotoId;
+  image?: PhotoId;
+  model?: ProjectModel;
   seed: number;
   hue: number;
 };
 
 export const projects: Project[] = [
+  {
+    id: "terrain-poce-sur-cisse",
+    title: "Terrain à Pocé-sur-Cisse",
+    category: "Modélisation 3D",
+    location: "Pocé-sur-Cisse (37)",
+    year: "2026",
+    description:
+      "Modèle 3D texturé d'un terrain issu de la photogrammétrie par drone, à explorer en 3D directement dans le navigateur.",
+    stats: [
+      { label: "GSD moyenne", value: "2,72 cm" },
+      { label: "Superficie", value: "4,64 ha" },
+      { label: "Points", value: "17,5 M" },
+    ],
+    model: {
+      src: "/portfolio/3d-models/poce-sur-cisse.glb",
+      poster: "/portfolio/3d-models/poce-sur-cisse.jpg",
+    },
+    seed: 7,
+    hue: 170,
+  },
   {
     id: "domaine-viticole",
     title: "Domaine viticole",
